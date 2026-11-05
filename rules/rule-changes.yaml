@@ -1,6 +1,6 @@
 description: Changes to rules, attributes, gitattributes and code owners need a person
 when: >-
-  path.glob(['.entrain/rules/**', '.entrain/attributes/**', 'projects/*/.entrain/**',
+  path.glob(['.entrain/rules/**', '.entrain/attributes/**',
   '**/.gitattributes', 'CODEOWNERS', '.github/CODEOWNERS', 'docs/CODEOWNERS'])
 locked: true
 requires:
