@@ -29,7 +29,7 @@ Changing a rule is a pull request here, reviewed under these rules.
 it (`dismiss: on-push`): an approval counts only at the head it approved, or at
 one that makes exactly the same changes, as after a rebase onto other files.
 It applies in every repository, so it covers only `.entrain/` there; this
-repository's own `scope-changes` asks the same for the organization's and
+repository's own `shared-rule-changes` asks the same for the organization's and
 projects' directories here.
 
 Keep the default branch protected, requiring a pull request and the
