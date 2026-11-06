@@ -1,0 +1,15 @@
+description: What an agent finding is about.
+scope: findings
+any-of:
+  correctness: The code does the wrong thing for some input or state.
+  error-handling: An error or failure is ignored, swallowed, or handled the wrong way.
+  concurrency: A race, deadlock, or ordering hazard between things that run at once.
+  security: Lets someone do what they shouldn't, or exposes what they shouldn't see.
+  data-and-migrations: Risks losing or corrupting data, or a migration that isn't safe to apply.
+  contracts-and-compatibility: Breaks an API, schema, or wire contract that callers depend on.
+  performance: Does needless work, or scales badly in time or memory.
+  tests: Missing, weak, or incorrect test coverage for the change.
+  simplicity-and-design: More complex or more tangled than the problem needs.
+  naming-and-readability: A name or structure that makes the code harder to read than it should be.
+  documentation-and-comments: Documentation or comments that are missing, stale, or misleading.
+  dead-code: Code that is unused, unreachable, or left over.

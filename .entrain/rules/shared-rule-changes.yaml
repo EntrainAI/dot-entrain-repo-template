@@ -1,5 +1,5 @@
-description: Changes to the organization's and projects' rules and attributes need a person
-when: "path.glob(['rules/**', 'attributes/**', 'projects/*/rules/**', 'projects/*/attributes/**'])"
+description: Changes to the organization's and projects' rules, attributes and classifiers need a person
+when: "path.glob(['rules/**', 'attributes/**', 'classifiers/**', 'projects/*/rules/**', 'projects/*/attributes/**'])"
 requires:
   - people: [pr.author, members]
     dismiss: on-push

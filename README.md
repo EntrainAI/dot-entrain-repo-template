@@ -7,6 +7,12 @@ each project's.
 
 - `rules/` (and `attributes/`, `review/`) at the root holds the organization's
   rules, which apply to every pull request in its repositories.
+- `classifiers/` at the root holds the organization's classifiers: the
+  questions a decision model answers, such as `finding-kind.yaml`, the kinds
+  Entrain tags each agent finding with for review analytics. Edit its kinds
+  to fit your organization. A classifier is asked with the model its file
+  names (`model: <provider>/<model-id>`), else the organization's default
+  classifier model in Settings › Preferences; with neither, nothing is asked.
 - `projects/<key>/rules/` holds a project's rules, which apply to the pull
   requests its sessions contribute to in its repositories.
 - `.entrain/rules/` holds this repository's own rules, like any repository's:
