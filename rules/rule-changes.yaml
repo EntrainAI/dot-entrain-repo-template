@@ -1,8 +1,18 @@
-description: Changes to rules, attributes, gitattributes and code owners need a person
-when: >-
-  path.glob(['.entrain/rules/**', '.entrain/attributes/**',
-  '**/.gitattributes', 'CODEOWNERS', '.github/CODEOWNERS', 'docs/CODEOWNERS'])
+description: Changes to rules, attributes, their format version, gitattributes and code owners need a person
+action: merge
+scope: file
+match: |-
+  paths.some(globMatch([
+    '**/.gitattributes',
+    '.entrain/attributes/**',
+    '.entrain/rules/**',
+    '.entrain/spec.yaml',
+    '.github/CODEOWNERS',
+    'CODEOWNERS',
+    'docs/CODEOWNERS',
+  ]))
+requirements:
+  reviews:
+    - reviewers: [pr.author, people]
+      dismiss: on-push
 locked: true
-requires:
-  - people: [pr.author, members]
-    dismiss: on-push

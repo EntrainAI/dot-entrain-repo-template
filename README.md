@@ -6,7 +6,7 @@ load. It is flat: its root is the organization's scope and `projects/<key>/`
 each project's.
 
 - `rules/` (and `attributes/`, `review/`) at the root holds the organization's
-  rules, which apply to every pull request in its repositories.
+  rules, which apply to pull requests into the default branch in its repositories.
 - `classifiers/` at the root holds the organization's classifiers: the
   questions a decision model answers, such as `finding-kind.yaml`, the kinds
   Entrain tags each agent finding with for review analytics. Edit its kinds
@@ -14,11 +14,17 @@ each project's.
   names (`model: <provider>/<model-id>`), else the organization's default
   classifier model in Settings › Preferences; with neither, nothing is asked.
 - `projects/<key>/rules/` holds a project's rules, which apply to the pull
-  requests its sessions contribute to in its repositories.
+  requests its sessions contribute to in its repositories, on the default branch.
 - `.entrain/rules/` holds this repository's own rules, like any repository's:
-  they apply to pull requests in this repository alone.
+  they apply to pull requests into the default branch in this repository alone.
 - `AGENTS.md`, `skills/` and `prompts/` at each scope carry the agent context
   loaded in sandboxes.
+
+Every scope with rules or attributes needs a `spec.yaml` containing exactly
+`version: entrain.dev/v1alpha1`: at the root, in each `projects/<key>/`, and in
+`.entrain/`. This selects the v1alpha1 file format for that scope. Without it,
+the scope uses the retiring legacy format. Rules use `action: merge` and gate
+the default branch unless they list other `branches` explicitly.
 
 Migrating from the earlier nested layout: move the organization's
 `.entrain/rules/` to `rules/` (and the other scope directories alike), and each
@@ -30,9 +36,9 @@ repository scope like any other repository's
 ([org trees in sandboxes](https://github.com/EntrainAI/entrain-src/blob/main/docs/working/org-trees-in-sandboxes.md), decision 4).
 
 Changing a rule is a pull request here, reviewed under these rules.
-`rule-changes` is locked: a change to a rule, an attribute, `.gitattributes` or
-`CODEOWNERS` needs a person's approval, the author's included. A push dismisses
-it (`dismiss: on-push`): an approval counts only at the head it approved, or at
+`rule-changes` is locked: a change to a rule, an attribute, `spec.yaml`,
+`.gitattributes` or `CODEOWNERS` needs a person's approval, the author's included.
+A push dismisses it (`dismiss: on-push`): an approval counts only at the head it approved, or at
 one that makes exactly the same changes, as after a rebase onto other files.
 It applies in every repository, so it covers only `.entrain/` there; this
 repository's own `shared-rule-changes` asks the same for the organization's and
