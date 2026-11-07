@@ -1,5 +1,17 @@
-description: Changes to the organization's and projects' rules, attributes and classifiers need a person
-when: "path.glob(['rules/**', 'attributes/**', 'classifiers/**', 'projects/*/rules/**', 'projects/*/attributes/**'])"
-requires:
-  - people: [pr.author, members]
-    dismiss: on-push
+description: Changes to the organization's and projects' rules, attributes, their format version and classifiers need a person
+action: merge
+scope: file
+match: |-
+  paths.some(globMatch([
+    'attributes/**',
+    'classifiers/**',
+    'projects/*/attributes/**',
+    'projects/*/rules/**',
+    'projects/*/spec.yaml',
+    'rules/**',
+    'spec.yaml',
+  ]))
+requirements:
+  reviews:
+    - reviewers: [pr.author, people]
+      dismiss: on-push
