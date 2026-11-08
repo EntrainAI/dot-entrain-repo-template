@@ -2,7 +2,7 @@ description: Changes to rules, attributes, their format version, gitattributes a
 action: merge
 scope: file
 match: |-
-  paths.some(globMatch([
+  paths.exists(globMatch([
     '**/.gitattributes',
     '.entrain/attributes/**',
     '.entrain/rules/**',
