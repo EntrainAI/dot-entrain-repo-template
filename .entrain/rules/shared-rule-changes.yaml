@@ -2,7 +2,7 @@ description: Changes to the organization's and projects' rules, attributes, thei
 action: merge
 scope: file
 match: |-
-  paths.some(globMatch([
+  paths.exists(globMatch([
     'attributes/**',
     'classifiers/**',
     'projects/*/attributes/**',
