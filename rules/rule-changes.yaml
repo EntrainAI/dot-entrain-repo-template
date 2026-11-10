@@ -5,6 +5,7 @@ match: |-
   paths.exists(globMatch([
     '**/.gitattributes',
     '.entrain/attributes/**',
+    '.entrain/gates/**',
     '.entrain/rules/**',
     '.entrain/spec.yaml',
     '.github/CODEOWNERS',

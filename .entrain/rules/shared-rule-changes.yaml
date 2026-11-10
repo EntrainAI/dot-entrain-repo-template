@@ -5,7 +5,9 @@ match: |-
   paths.exists(globMatch([
     'attributes/**',
     'classifiers/**',
+    'gates/**',
     'projects/*/attributes/**',
+    'projects/*/gates/**',
     'projects/*/rules/**',
     'projects/*/spec.yaml',
     'rules/**',
