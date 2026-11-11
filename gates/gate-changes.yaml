@@ -1,8 +1,9 @@
-description: Changes to rules, attributes, their format version, gitattributes and code owners need a person
+description: >-
+  Changes to gates and rules, attributes, their format version, gitattributes and code owners need a person
 action: merge
-scope: file
+scope: fileChange
 match: |-
-  paths.exists(globMatch([
+  sides.exists(path.globMatch([
     '**/.gitattributes',
     '.entrain/attributes/**',
     '.entrain/gates/**',
