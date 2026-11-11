@@ -1,5 +1,5 @@
 description: >-
-  Changes to the organization's and projects' gates and rules, attributes, their format version and classifiers need
+  Changes to the organization's and projects' gates, attributes, their format version and classifiers need
   a person
 action: merge
 scope: fileChange
@@ -10,9 +10,7 @@ match: |-
     'gates/**',
     'projects/*/attributes/**',
     'projects/*/gates/**',
-    'projects/*/rules/**',
     'projects/*/spec.yaml',
-    'rules/**',
     'spec.yaml',
   ]))
 requirements:
