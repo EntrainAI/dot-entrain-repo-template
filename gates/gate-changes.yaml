@@ -1,5 +1,5 @@
 description: >-
-  Changes to gates and rules, attributes, their format version, gitattributes and code owners need a person
+  Changes to gates, attributes, their format version, gitattributes and code owners need a person
 action: merge
 scope: fileChange
 match: |-
@@ -7,7 +7,6 @@ match: |-
     '**/.gitattributes',
     '.entrain/attributes/**',
     '.entrain/gates/**',
-    '.entrain/rules/**',
     '.entrain/spec.yaml',
     '.github/CODEOWNERS',
     'CODEOWNERS',

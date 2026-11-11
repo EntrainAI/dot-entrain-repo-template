@@ -22,9 +22,9 @@ each project's.
 
 Every scope with gates or attributes needs a `spec.yaml` containing exactly
 `version: entrain.dev/v1alpha2`: at the root, in each `projects/<key>/`, and in
-`.entrain/`. This selects v1alpha2, whose gates live in `gates/`. A scope still on
-`entrain.dev/v1alpha1` keeps `rules/` and is read with a deprecation warning until
-it moves. Gates use `action: merge` and gate
+`.entrain/`. This selects v1alpha2, whose gates live in `gates/`. Entrain no longer
+reads `entrain.dev/v1alpha1`: a scope still on it, or a file left in `rules/`, is
+an error until it moves. Gates use `action: merge` and gate
 the default branch unless they list other `branches` explicitly.
 
 Migrating from v1alpha1: set the scope's `spec.yaml` to
@@ -43,14 +43,13 @@ repository scope like any other repository's
 ([org trees in sandboxes](https://github.com/EntrainAI/entrain-src/blob/main/docs/working/org-trees-in-sandboxes.md), decision 4).
 
 Changing a gate is a pull request here, reviewed under these gates.
-`gate-changes` is locked: a change to a gate or rule, an attribute, `spec.yaml`,
+`gate-changes` is locked: a change to a gate, an attribute, `spec.yaml`,
 `.gitattributes` or `CODEOWNERS` needs a person's approval, the author's included.
 A push dismisses it (`dismiss: on-push`): an approval counts only at the head it approved, or at
 one that makes exactly the same changes, as after a rebase onto other files.
-It applies in every repository, covering both `.entrain/gates/` and a tree not
-yet moved from `.entrain/rules/`, along with the other protected files; this
-repository's own `shared-gate-changes` asks the same for the organization's and
-projects' directories here.
+It applies in every repository, so it covers only `.entrain/` there;
+this repository's own `shared-gate-changes` asks the same for the organization's
+and projects' gates here.
 
 Keep the default branch protected, requiring a pull request and the
 `entrain/gates` check, so that no direct push changes every repository's gates
