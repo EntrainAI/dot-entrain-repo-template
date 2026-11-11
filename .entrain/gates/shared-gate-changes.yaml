@@ -1,8 +1,10 @@
-description: Changes to the organization's and projects' rules, attributes, their format version and classifiers need a person
+description: >-
+  Changes to the organization's and projects' gates and rules, attributes, their format version and classifiers need
+  a person
 action: merge
-scope: file
+scope: fileChange
 match: |-
-  paths.exists(globMatch([
+  sides.exists(path.globMatch([
     'attributes/**',
     'classifiers/**',
     'gates/**',
