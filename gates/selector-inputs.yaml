@@ -1,0 +1,10 @@
+description: >-
+  A change to a .gitattributes value, a code owner or an integration field that gates read, on some
+  path, needs a person
+action: merge
+scope: selectorInputChange
+requirements:
+  reviews:
+    - reviewers: [principal(pr.author), people]
+      dismiss: on-push
+locked: true

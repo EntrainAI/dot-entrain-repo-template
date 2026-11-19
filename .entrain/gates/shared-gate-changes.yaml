@@ -15,5 +15,5 @@ match: |-
   ]))
 requirements:
   reviews:
-    - reviewers: [pr.author, people]
+    - reviewers: [principal(pr.author), people]
       dismiss: on-push

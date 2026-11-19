@@ -1,19 +1,15 @@
 description: >-
-  Changes to gates, attributes, their format version, gitattributes and code owners need a person
+  Changes to gates, attributes and their format version need a person
 action: merge
 scope: fileChange
 match: |-
   sides.exists(path.globMatch([
-    '**/.gitattributes',
     '.entrain/attributes/**',
     '.entrain/gates/**',
     '.entrain/spec.yaml',
-    '.github/CODEOWNERS',
-    'CODEOWNERS',
-    'docs/CODEOWNERS',
   ]))
 requirements:
   reviews:
-    - reviewers: [pr.author, people]
+    - reviewers: [principal(pr.author), people]
       dismiss: on-push
 locked: true
