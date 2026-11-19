@@ -27,11 +27,20 @@ reads `entrain.dev/v1alpha1`: a scope still on it, or a file left in `rules/`, i
 an error until it moves. Gates use `action: merge` and gate
 the default branch unless they list other `branches` explicitly.
 
+`gates/selector-inputs.yaml` asks for a person on any change to what gates read about a path:
+a `.gitattributes` value, a file's code owners, or an integration's field. `.gitattributes` and
+CODEOWNERS files themselves are no longer path-gated. Narrow it in a gate of your own, for example
+`match: field == 'gitattributes.linguist-generated' && after == 'true'`. To keep a person on every
+`.gitattributes` edit, for its effects outside Entrain such as LFS and line endings, add your own
+path gate.
+
 Migrating from v1alpha1: set the scope's `spec.yaml` to
 `version: entrain.dev/v1alpha2`, move `rules/` to `gates/`, and rewrite selectors
 in v1alpha2's names: `scope: fileChange`, and `sides.exists(…)`/`sides.all(…)`
 for a file change's paths and attributes. The checker names each v1alpha1 name
-and what to write instead.
+and what to write instead. v1alpha2 also takes the graph's names: write
+`reviewers: [principal(pr.author)]` rather than `[pr.author]`, `.username` rather than `.login`,
+and `commit.committer` rather than `commit.author`.
 
 Migrating from the earlier nested layout: move the organization's
 `.entrain/gates/` to `gates/` (and the other scope directories alike), and each
@@ -43,8 +52,8 @@ repository scope like any other repository's
 ([org trees in sandboxes](https://github.com/EntrainAI/entrain-src/blob/main/docs/working/org-trees-in-sandboxes.md), decision 4).
 
 Changing a gate is a pull request here, reviewed under these gates.
-`gate-changes` is locked: a change to a gate, an attribute, `spec.yaml`,
-`.gitattributes` or `CODEOWNERS` needs a person's approval, the author's included.
+`gate-changes` is locked: a change to a gate, an attribute, or `spec.yaml`
+needs a person's approval, the author's included.
 A push dismisses it (`dismiss: on-push`): an approval counts only at the head it approved, or at
 one that makes exactly the same changes, as after a rebase onto other files.
 It applies in every repository, so it covers only `.entrain/` there;
